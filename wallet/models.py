@@ -1,4 +1,5 @@
 from email.policy import default
+from hashlib import blake2b
 from inspect import signature
 import profile
 from django.db import models
@@ -64,7 +65,7 @@ class Card(models.Model):
     exipry_date=models.DateTimeField(default=timezone.now)
     card_status=models.CharField(max_length=15,null=True)
     security_code=models.IntegerField()
-    signature=models.ImageField()
+    signature=models.ImageField(blank = True)
     Wallet=models.ForeignKey('Account',on_delete=models.CASCADE,related_name='Card_wallet')
     account=models.ForeignKey('Account',on_delete=models.CASCADE,related_name='Card_account')
     issuer=models.CharField(max_length=15,null=True)
