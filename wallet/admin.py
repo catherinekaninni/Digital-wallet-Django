@@ -6,13 +6,49 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display=("first_name","last_name","email")
     search_Fields=("first_name","last_name")
 admin.site.register(Customer,CustomerAdmin)
-admin.site.register(Currency)
-admin.site.register(Wallet)
-admin.site.register(Account)
+
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display = ("amount", "symbol", "country_of_origin")
+    search_fields = ("country_of_origin", "symbol")
+admin.site.register(Currency, CurrencyAdmin)
+
+class WalletAdmin(admin.ModelAdmin):
+    list_display = ("customer", "balance", "currency")
+    search_fields = ("customer", "status")
+admin.site.register(Wallet, WalletAdmin)
+
+class AccountAdmin(admin.ModelAdmin):
+    list_display = ("account_name", "account_type", "wallet")
+    search_fields = ("account_name", "account_type")
+admin.site.register(Account, AccountAdmin)
 admin.site.register(Transaction)
-admin.site.register(Card)
-admin.site.register(Thirdparty)
-admin.site.register(Notification)
-admin.site.register(Loan)
-admin.site.register(Receipt)
-admin.site.register(Reward)
+
+class CardAdmin(admin.ModelAdmin):
+    list_display = ("card_type", "card_name")
+    search_fields = (" card_type","card_name")
+admin.site.register(Card, CardAdmin)
+
+class ThirdpartyAdmin(admin.ModelAdmin):
+    list_display=("name","phone_number",)
+    search_fields = ("name","phone_number")
+admin.site.register(Thirdparty,ThirdpartyAdmin)
+
+class NotificationAdmin(admin.ModelAdmin):
+    list_display=("name","receipt")
+    search_fields = ("name","receipt")
+admin.site.register(Notification,NotificationAdmin)
+
+class LoanAdmin(admin.ModelAdmin):
+    list_display=("guarantor","loan_type")
+    search_fields = ("guarantor","loan_type")
+admin.site.register(Loan,LoanAdmin)
+
+class ReceiptAdmin(admin.ModelAdmin):
+    list_display=("receipt_file","receipt_type")
+    search_fields = ("receipt_file","receipt_type")
+admin.site.register(Receipt,ReceiptAdmin)
+
+class RewardAdmin(admin.ModelAdmin):
+    list_display=("gender","date_and_time")
+    search_fields = ("gender","date_and_time")
+admin.site.register(Reward,RewardAdmin)

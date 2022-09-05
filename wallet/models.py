@@ -28,7 +28,7 @@ class Customer(models.Model):
  
 class Currency (models.Model):
     amount=models.PositiveIntegerField()
-    Symbol=models.CharField(max_length=15,null=True)
+    symbol=models.CharField(max_length=15,null=True)
     country_of_origin=models.CharField(max_length=24,null=True)
 
 class Wallet (models.Model):
